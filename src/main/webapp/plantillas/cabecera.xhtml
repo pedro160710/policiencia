@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+<h:head>
+	<h:outputStylesheet name="css/bootstrap.min.css" />
+	<h:outputStylesheet name="css/DT_bootstrap.css" />
+	
+	<!-- Le javascript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<h:outputScript name="js/jquery-1.7.2.min.js" />
+	<h:outputScript name="js/bootstrap.min.js" />
+	<h:outputScript name="js/jquery.dataTables.min.js" />
+	<!-- JQuery DataTable plugin -->
+	<h:outputScript name="js/DT_bootstrap.js" />
+	<h:outputStylesheet name="css/books.css" />
+	<!-- JQuery DataTable plugin -->
+	
+	<title><ui:insert name="title">policiencia</ui:insert></title>
+</h:head>
+
+
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">       
+          <p:graphicImage value="/Imagenes/logopoliciencia.png" width="134px" height="57px" ></p:graphicImage>
+        </div>
+        <!-- Barra de busqueda -->
+        <div class="form-group navbar-btn">
+          <div class="navbar-btn ">
+              <div class="col-xs-4 col-xs-offset-3 navbar-btn">
+                <div class="input-group ">
+                    <h:form>
+                   <p:selectOneMenu id="opcionesBusqueda" value="#{busquedaLibro.opcionBusqueda}"  >   
+                      <f:selectItem itemLabel="Titulo" itemValue="tituloLibro" />
+                      <f:selectItem itemLabel="Autor" itemValue="autor" />
+                      <f:selectItem itemLabel="Categoria" itemValue="categoria" />  
+                  </p:selectOneMenu>  
+                  
+					        <p:inputText value="#{busquedaLibro.textoBusqueda}" ></p:inputText>
+					  
+                  <p:commandButton id="cmbBuscar" value="Buscar" action="#{busquedaLibro.buscarCoincidenciaLibros()}"></p:commandButton>
+                   </h:form> 
+                </div>
+              </div>
+            </div>
+		</div>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <p:commandLink value="Login" action="#{menuControlador.direccionarLogin}" immediate="true" ></p:commandLink>
+          </li>
+          <li>
+            <p:commandLink value="Registrarse" action="#{menuControlador.direccionarCrearUsuario}" immediate="true"></p:commandLink>
+          </li>
+          <li>
+            <h:outputLabel  value="#{mbSesion.usuario}" ALING="CENTER"></h:outputLabel>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+      <!-- /.container-fluid -->
+    </nav>
+
+	
+
+</html>

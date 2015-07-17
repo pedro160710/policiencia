@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+		<ui:composition>
+			<div class="col-md-8">
+			
+				<h:form id="frmDetalleLibro">
+			<p:panel sytyleClass="panel-heading" id="panel"
+				header="Detalles del libro: " widgetVar="100%">
+				
+				<div class="funny-boxes funny-boxes-top-sea">
+                  <div class="row">
+                    <div class="col-md-4 funny-boxes-img">
+                      <p:graphicImage
+						value="#{libroControlador.instLibro.ruta_imagen_libro}"
+						width="100px" height="100px">
+					</p:graphicImage>
+                      <ul class="list-unstyled">
+                        <li>
+                          <i class="fa fa-briefcase" >
+                          <h:outputLabel value="Precio: $#{libroControlador.instLibro.precio_libro}" />
+                          </i></li>
+                      </ul>
+                    </div>
+                    <div class="col-md-8">
+                      <h2>
+					<h:outputLabel value="#{libroControlador.instLibro.titulo_libro}" />
+                      </h2>
+                      <h:outputLabel value="#{libroControlador.instLibro.sinopsis_libro}"/>
+                    </div>
+                  </div>
+                </div>
+			</p:panel>
+
+
+		</h:form>
+
+			</div>
+		</ui:composition>
+
+	</html>
+	
+			
+			

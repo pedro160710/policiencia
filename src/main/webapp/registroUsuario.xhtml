@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<ui:include src="/plantillas/cabecera.xhtml"></ui:include>
+	<div class="container">
+    <div class="row">
+		<div class="col-md-4 col-md-offset-4">
+		<h:form id="frmRegistroUsuario" styleClass="form-horizontal">
+			<p:growl id="growl" showDetail="true"
+				style="font-family: Cambria; font-size:15px;" />
+
+			<p:panel id="panel">
+
+				<fieldset>
+				<div id="legend">
+				      <legend class="">Registro de Usuario</legend>
+				    </div>
+				    <div class="control-group">
+					<p:outputLabel styleClass="control-label" for="inNombre"
+						value="*Nombres: "></p:outputLabel>
+					<p:inputText id="inNombre" name="inNombre" styleClass="input-xlarge form-control"
+						value="#{crearUsu.usuario.nombres_usuario}"
+						maxlength="100">
+						<p:ajax
+							listener="#{validar.validarLetras(crearUsu.usuario.nombres_usuario)}"
+							update=":frmRegistroUsuario:growl">
+						</p:ajax>
+					</p:inputText>
+					</div>
+					
+					<div class="control-group">
+					<p:outputLabel styleClass="control-label" for="inApellido"
+						value="*Apellidos: "></p:outputLabel>
+					<p:inputText id="inApellido" name="inApellido" styleClass="input-xlarge form-control"
+						value="#{crearUsu.usuario.apellidos_usuario}"
+						maxlength="100">
+						<p:ajax
+							listener="#{validar.validarLetras(crearUsu.usuario.apellidos_usuario)}"
+							update=":frmRegistroUsuario:growl">
+						</p:ajax>
+					</p:inputText>
+					</div>
+					
+					<div class="control-group">
+					<p:outputLabel styleClass="control-label" for="calFechaNac"
+						value="*Fecha Nacimiento: "></p:outputLabel>
+					<p:calendar id="calFechaNac" name="calFechaNac"
+						value="#{crearUsu.usuario.fechaNacimiento_usuario}"
+						effect="fold" showOn="button" pattern="yyyy-MM-dd"
+						yearRange="#{crearUsu.rango}"
+						maxdate="#{crearUsu.rango}"  mask="true" navigator="true"
+						placeholder="Ej: AAAA-MM-DD">
+					</p:calendar>
+					</div>
+					
+					<div class="control-group">
+					<p:outputLabel styleClass="control-label" for="inCorreo"
+						value="*E-mail: "></p:outputLabel>
+					<p:inputText id="inCorreo" name="inCorreo" styleClass="input-xlarge form-control"
+						value="#{crearUsu.usuario.email_usuario}" 
+						validatorMessage="Correo no válido"
+						placeholder="policiencia@gmail.com">
+						<p:ajax
+							listener="#{validar.validarMail(crearUsu.usuario.email_usuario)}"
+							update=":frmRegistroUsuario:growl">
+						</p:ajax>
+					</p:inputText>
+					</div>
+					
+					<div class="control-group">
+					<p:outputLabel styleClass="control-label" for="usuario"
+						value="*Nombre de Usuario: "></p:outputLabel>
+					<p:inputText id="usuario" name="usuario" styleClass="input-xlarge form-control"
+						value="#{crearUsu.usuario.username_usuario}">
+						<p:ajax
+							listener="#{validar.validarLetras(crearUsu.usuario.username_usuario)}"
+							update=":frmRegistroUsuario:growl">
+						</p:ajax>
+					</p:inputText>
+					</div>
+					
+					<div class="control-group">
+					<p:outputLabel styleClass="control-label" for="clave"
+						value="*Contraseña:"></p:outputLabel>
+					<p:password id="clave" name="clave" styleClass="input-xlarge form-control"
+						value="#{crearUsu.usuario.password_usuario}"
+						feedback="true" promptLabel="Digite su contraseña"
+						weakLabel="Débil" goodLabel="Bueno" strongLabel="Fuerte" size="15" placeholder="mínimo 7 caracteres"></p:password>
+					</div>
+
+					<div class="control-group">
+					<p:outputLabel styleClass="control-label" for="claveConfirmacion"
+						value="*Confirmar Contraseña:"></p:outputLabel>
+					<p:password id="claveConfirmacion" name="claveConfirmacion" styleClass="input-xlarge form-control"
+						value="#{crearUsu.password2}" size="15"></p:password>
+					</div>
+				</fieldset>
+
+			</p:panel>
+			<p:panel>
+				<p:captcha id="captcha"></p:captcha>
+			</p:panel>
+			<div class="control-group">
+						<br />
+						<div class="controls">
+					<p:commandButton styleClass="btn btn-success"
+						id="cmbGuardar" value="Crear Usuario" 
+						icon="ui-icon-disk"
+						actionListener="#{crearUsu.guardarNombre()}"
+						update=":frmRegistroUsuario:growl, :frmRegistroUsuario:panel">
+						<p:confirm header="CONFIRMACIÓN"
+							message="¿ DESEA UNIRSE A POLICIENCIA ?" icon="ui-icon-alert" />
+						</p:commandButton>
+				</div>
+				</div>
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+				<p:commandButton value="SI" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
+					update=":form:message, :form:dataLibro" />
+				<p:commandButton value="NO" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+		</h:form>
+		</div>
+		</div>
+	</div>
+
+</h:body>
+</html>

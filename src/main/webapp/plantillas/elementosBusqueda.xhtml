@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+		<ui:composition>
+			<div class="col-md-8">
+			<h:form id="frmBusq">
+			<ui:repeat value="#{busquedaLibro.librosEncontrados}" var="libro">
+						<div class="funny-boxes funny-boxes-top-sea">
+		                  <div class="row">
+		                    <div class="col-md-4 funny-boxes-img">
+		                      <h:commandLink
+									action="#{libroControlador.capturarLibroDetalle(libro)}">
+									<!-- <a href="detallesLibro.xhtml">  -->
+									<p:graphicImage
+										value="#{libro.ruta_imagen_libro}" width="100px"
+										height="100px">
+									</p:graphicImage>
+									<!-- </a> -->
+								</h:commandLink>
+		                    </div>
+		                    <div class="col-md-8">
+		                      <h2>
+		                        <h:outputLabel value="#{libro.titulo_libro}" />
+		                      </h2>
+		                      <ul class="list-unstyled">
+		                        <li>
+		                          <i class="fa fa-briefcase"></i>Precio:</li>
+		                          <h:outputLabel
+									value="$#{libro.precio_libro}"/>
+		                      </ul>
+		                    </div>
+		                  </div>
+		                </div>								
+
+					</ui:repeat>
+
+		</h:form>
+			</div>
+	</ui:composition>
+
+</html>
